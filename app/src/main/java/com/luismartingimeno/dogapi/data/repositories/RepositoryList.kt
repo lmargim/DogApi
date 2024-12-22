@@ -1,6 +1,5 @@
 package com.luismartingimeno.dogapi.data.repositories
 
-import com.luismartingimeno.dogapi.data.model.DogsResponse
 import com.luismartingimeno.dogapi.data.repositories.RemoteConnection.remoteService
 
 object RepositoryList {

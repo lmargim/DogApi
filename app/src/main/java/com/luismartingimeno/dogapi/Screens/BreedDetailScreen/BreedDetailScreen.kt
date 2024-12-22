@@ -1,12 +1,7 @@
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,6 +10,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.luismartingimeno.dogapi.Screens.BreedDetailScreen.BreedDetailViewModel
 import com.luismartingimeno.dogapi.scaffold.TopBar
+
 @Composable
 fun BreedDetailScreen(
     nombreUsuario: String,
@@ -23,6 +19,7 @@ fun BreedDetailScreen(
     onBackClick: () -> Unit
 ) {
     val breedImage by viewModel.breedImage.collectAsState()
+    var isRefreshing by remember { mutableStateOf(false) }
 
     LaunchedEffect(breed) {
         viewModel.fetchBreedImage(breed)
@@ -59,7 +56,26 @@ fun BreedDetailScreen(
                         .clip(RoundedCornerShape(16.dp))
                 )
             }
+
+            // Botón para cambiar la imagen
+            Button(
+                onClick = {
+                    viewModel.fetchBreedImage(breed)
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
+                Text(
+                    text = "Refrescar Imagen",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 }
-

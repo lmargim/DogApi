@@ -1,4 +1,4 @@
-package com.luismartingimeno.dogapi.data
+package com.luismartingimeno.dogapi.data.model
 
 data class RespuestaImagenAleatoria(
     val message: String,
