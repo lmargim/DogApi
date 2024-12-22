@@ -1,4 +1,4 @@
-package com.luismartingimeno.apod
+package com.luismartingimeno.dogapi
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

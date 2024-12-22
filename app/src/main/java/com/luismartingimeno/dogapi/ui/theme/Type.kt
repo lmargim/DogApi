@@ -1,4 +1,4 @@
-package com.luismartingimeno.apod.ui.theme
+package com.luismartingimeno.dogapi.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

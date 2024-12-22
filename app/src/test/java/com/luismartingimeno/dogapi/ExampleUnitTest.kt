@@ -1,4 +1,4 @@
-package com.luismartingimeno.apod
+package com.luismartingimeno.dogapi
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.luismartingimeno.apod.ui.theme
+package com.luismartingimeno.dogapi.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
