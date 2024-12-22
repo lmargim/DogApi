@@ -11,4 +11,13 @@ object RemoteConnection {
         .build()
 
     val remoteService: RemoteService = retrofit.create()
+
+    suspend fun getBreedImage(breed: String): String? {
+        val response = remoteService.getRandomImageByBreed(breed)
+        return if (response.isSuccessful) {
+            response.body()?.message
+        } else {
+            null
+        }
+    }
 }

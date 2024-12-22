@@ -16,7 +16,6 @@ object RepositoryList {
                 emptyMap()
             }
         } catch (e: Exception) {
-            // Manejamos errores como problemas de red
             e.printStackTrace()
             emptyMap()
         }

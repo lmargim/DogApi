@@ -1,12 +1,16 @@
 package com.luismartingimeno.dogapi.Screens.HomeScreen
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Pets
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,7 +36,8 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = "DogApi",
+                titulo = "DogApi",
+                nombreUsuario = nombreUsuario,
                 navigateToLogin = navigateToLogin
             )
         }
@@ -51,13 +56,15 @@ fun HomeScreen(
                     CircularProgressIndicator()
                 }
             } else {
-                LazyColumn(
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(lista) { breed ->
-                        BreedItem(breed = breed, onClick = { navigateToBreedDetail(nombreUsuario,breed) })
+                        BreedItem(breed = breed, onClick = { navigateToBreedDetail(nombreUsuario, breed) })
                     }
                 }
             }
@@ -71,18 +78,34 @@ fun BreedItem(breed: String, onClick: (String) -> Unit) {
         onClick = { onClick(breed) },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp),
+            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .height(120.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary
         ),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(16.dp),
+        elevation = ButtonDefaults.elevatedButtonElevation()
     ) {
-        Text(
-            text = breed,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(4.dp)
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Icon(
+                imageVector = Icons.Default.Pets,
+                contentDescription = "Breed Icon",
+                modifier = Modifier.size(40.dp),
+                tint = MaterialTheme.colorScheme.onPrimary
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = breed,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(4.dp),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
     }
 }
 

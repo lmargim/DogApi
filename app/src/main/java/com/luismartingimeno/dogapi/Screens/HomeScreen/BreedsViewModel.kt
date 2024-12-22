@@ -27,12 +27,12 @@ class BreedsViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val breedsMap = response.body()?.message ?: emptyMap()
                     val breedsList = breedsMap.flatMap { (breed, subBreeds) ->
-                        if (subBreeds.isEmpty()) listOf(breed) // Si no hay subrazas, solo agrega la raza
-                        else subBreeds.map { "$breed $it" } // Combina raza y subraza
+                        if (subBreeds.isEmpty()) listOf(breed)
+                        else subBreeds.map { "$breed $it" }
                     }
-                    _breeds.value = breedsList.sorted() // Ordena la lista alfabéticamente
+                    _breeds.value = breedsList.sorted()
                 } else {
-                    _breeds.value = emptyList() // En caso de error, lista vacía
+                    _breeds.value = emptyList()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -1,13 +1,12 @@
 package com.luismartingimeno.dogapi.navigation
 
+import BreedDetailScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.navigation.toRoute
-import com.luismartingimeno.dogapi.Screens.BreedDetailScreen.BreedDetailScreen
 import com.luismartingimeno.dogapi.Screens.HomeScreen.HomeScreen
 import com.luismartingimeno.dogapi.Screens.LoginScreen.LoginScreen
 
@@ -45,7 +44,7 @@ fun Navegacion() {
             )
         }
 
-        // Pantalla de BreedDetail
+        // Pantalla de Detalle de la Raza
         composable(
             route = "BreedDetail/{nombreUsuario}/{breed}",
             arguments = listOf(
