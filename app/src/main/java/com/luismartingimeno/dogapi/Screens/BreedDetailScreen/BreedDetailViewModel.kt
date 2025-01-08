@@ -15,7 +15,15 @@ class BreedDetailViewModel : ViewModel() {
     fun fetchBreedImage(breed: String) {
         viewModelScope.launch {
             try {
-                val imageUrl = RemoteConnection.getBreedImage(breed)
+                val normalizedBreed = breed.split(" ").let { parts ->
+                    if (parts.size == 2) {
+                        "${parts[0]}/${parts[1]}" // MainBreed/SubBreed
+                    } else {
+                        breed // razas simples
+                    }
+                }
+
+                val imageUrl = RemoteConnection.getBreedImage(normalizedBreed)
                 _breedImage.value = imageUrl
             } catch (e: Exception) {
                 e.printStackTrace()

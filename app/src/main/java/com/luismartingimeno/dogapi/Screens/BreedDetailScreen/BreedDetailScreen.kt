@@ -19,7 +19,6 @@ fun BreedDetailScreen(
     onBackClick: () -> Unit
 ) {
     val breedImage by viewModel.breedImage.collectAsState()
-    var isRefreshing by remember { mutableStateOf(false) }
 
     LaunchedEffect(breed) {
         viewModel.fetchBreedImage(breed)
